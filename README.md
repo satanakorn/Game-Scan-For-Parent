@@ -1,4 +1,4 @@
-Transitioning Games from Adversaries to Allies: Aiding Us in Thai Society
+Games from Adversaries to Allies: Aiding Us in Thai Society
 
 Children growing up in the digital age find gaming unavoidable.
 Parents lack understanding of the benefits of gaming.
