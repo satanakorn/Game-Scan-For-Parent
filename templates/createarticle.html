@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% set active_page = "CreateArticle" %}
+{% block title %}
+    CreateArticle
+{% endblock %}
+{% block main %}
+<div id="comments" class="comments-area comments  nolist text-center">
+    <div id="respond" class="comment-respond">
+        <br><h3 id="reply-title" class="comment-reply-title">Create article <small><a rel="nofollow"
+                    id="cancel-comment-reply-link" href="/shapely/about/page-markup-and-formatting/#respond"
+                    style="display:none;">Cancel reply</a></small></h3>
+        <form action="/c_article" method="post" id="commentform"
+            class="comment-form" novalidate="">
+            
+            <input id="title" placeholder="Title" name="title" type="text" value="" size="30" aria-required="true" required="required">
+            <br><br>
+            
+            <textarea
+                placeholder="Content" id="content" name="content" cols="90" rows="8" aria-required="true"
+                required="required"></textarea>
+            
+                <div style="margin: 20px;">
+                    <smtbtn><button class="btn btn-primary smtbtn" type="submit">สร้างบทความ</button></smtbtn>
+                </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

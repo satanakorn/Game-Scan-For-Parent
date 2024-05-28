@@ -1,0 +1,122 @@
+{% extends "layout.html" %}
+{% block title %}
+CreateReview
+{% endblock %}
+{% block main %}
+<div id="comments" class="comments-area comments  nolist text-center">
+    <div id="respond" class="comment-respond">
+        <br><h3 id="reply-title" class="comment-reply-title">Create Review <small><a rel="nofollow"
+                    id="cancel-comment-reply-link" href="/shapely/about/page-markup-and-formatting/#respond"
+                    style="display:none;">Cancel reply</a></small></h3>
+        <form action="/c_review" method="post" id="commentform"
+            class="comment-form" novalidate="">
+            <br>
+            <input id="title" placeholder="Title*" name="title" type="text" value="" size="30" aria-required="true" required="required">
+            
+            <input id="author" name="author" type="text" placeholder="Author name*" value="" size="30"
+                aria-required="true" required="required">
+            <br><br>
+            <textarea
+                placeholder="Game description*" id="description" name="description" cols="90" rows="8" aria-required="true"
+                required="required"></textarea>
+                <br><textarea
+                placeholder="Content Review*" id="review" name="review" cols="90" rows="8" aria-required="true"
+                required="required"></textarea>
+                <br><textarea
+                placeholder="Suggestion*" id="suggestion" name="suggestion" cols="90" rows="8" aria-required="true"
+                required="required"></textarea>
+            <br><br>
+
+            <br><br>Score_____________________________________________________________________________________<br><br>
+            <input id="score" placeholder="score (0-10)*" name="score" type="text" size="8" aria-required="true" required="required" 
+            class="form-control" style="width: 20%; margin: auto;">
+
+
+            <br><br>Picture_____________________________________________________________________________________<br>
+            Image link url*
+            <input id="cover" placeholder="Cover Picture url" name="cover" type="text" size="8" aria-required="true"
+            class="form-control" style="width: 40%; margin: auto;"><br>
+            <input id="pic1" placeholder="Picture 1 url" name="pic1" type="text" size="8" aria-required="true"
+            class="form-control" style="width: 40%; margin: auto;"><br>
+            <input id="pic2" placeholder="Picture 2 url" name="pic2" type="text" size="8" aria-required="true"
+            class="form-control" style="width: 40%; margin: auto;"><br>
+            <input id="pic3" placeholder="Picture 3 url" name="pic3" type="text" size="8" aria-required="true"
+            class="form-control" style="width: 40%; margin: auto;">
+            
+            
+
+            <div style="text-align: justify; margin-left: 30%; margin-right: auto;">
+                <br><br>Ribbon_____________________________________________________________________________________<br>
+                <div class="form-check form-check-inline">
+                    {% for item in ribbons %}
+                    <input type="checkbox" name="ribbons" value="{{item}}" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;">
+                        <label>
+                            {{item}}
+                        </label><br>
+                    {% endfor %}
+                </div>
+
+
+                <br><br>Genre______________________________________________________________________________________<br>
+                <div class="form-check form-check-inline">
+                    {% for item in genres %}
+                    <input type="checkbox" name="genres" value="{{item}}" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;">
+                        <label>
+                            {{item}}
+                        </label><br>
+                    {% endfor %}
+                </div>
+
+
+                <br><br>Skill_______________________________________________________________________________________<br>
+                <div class="form-check form-check-inline">
+                    {% for item in skills %}
+                    <input type="checkbox" name="skills" value="{{item}}" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;">
+                        <label>
+                            {{item}}
+                        </label><br>
+                    {% endfor %}
+                </div>
+
+
+                <br><br>Subject_____________________________________________________________________________________<br>
+                <div class="form-check form-check-inline">
+                    {% for item in subjects %}
+                    <input type="checkbox" name="subjects" value="{{item}}" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;">
+                        <label>
+                            {{item}}
+                        </label><br>
+                    {% endfor %}
+                </div>
+
+
+                <br><br>Rate_________________________________________________________________________________________<br>
+                <div class="form-check form-check-inline">
+                    {% for item in rates %}
+                    <input type="radio" id="rate" name="rate" value="{{item}}">
+                        <label>
+                            {{item}}
+                        </label>
+                    {% endfor %}
+                </div>
+
+
+                <br><br>Platform_____________________________________________________________________________________<br>
+                <div class="form-check form-check-inline">
+                    {% for item in platforms %}
+                    <input type="checkbox" name="platforms" value="{{item}}" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;">
+                        <label>
+                            {{item}}
+                        </label><br>
+                    {% endfor %}
+                </div>
+            </div>
+            <br><br>
+
+            <div style="margin: 20px;">
+                <button class="btn btn-primary smtbtn" type="submit">สร้างบทความรีวิว</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

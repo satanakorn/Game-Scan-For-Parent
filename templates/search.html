@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+{% set active_page = "Search" %}
+{% block title %}
+Search
+{% endblock %}
+{% block main %}
+<br>
+<br>
+    <form class="form-inline" action="/search" method="POST">
+        <!--
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div include="form-input-select()">
+                <select required id="filter" name="filter">
+                <option id="filter" name="filter" value="top_a_score"hidden>จัดเรียงตาม</option>
+            
+                <option value="top_a_score">คะแนนรีวิวสูงสุด</option>
+                <option value="bot_a_score">คะแนนรีวิวต่ำสุด</option>
+                <option value="top_pr_score">คะแนนจากผู้ปกครองสูงสุด</option>
+                <option value="bot_pr_score">คะแนนจากผู้ปกครองต่ำสุด</option>
+                <option value="top_pl_score">คะแนนจากผู้เล่นสูงสุด</option>
+                <option value="bot_pl_score">คะแนนจากผู้เล่นต่ำสุด</option>
+                </select>
+            </div>
+        </div>
+        -->
+        <div class="input-group" style="max-width: 100%; margin-left: 40%; text-align: center;">
+                <div class="input-group-prepend">
+                    <input class="form-control" type="search" placeholder="ค้นหาเกม (ชื่อเกม)" aria-label="Search" name="search" id="search">
+                </div>
+                <button class="btn btn-outline-success" type="submit">ค้นหา</button>
+        </div>
+    </form>
+<br>
+<br>
+<div class="grid container" style="grid-gap: 20px; padding: 0px;">
+    {% for item in reviews %}
+    
+    <div class="card">
+        
+        {% if item[4] == 'Approved' %}
+        <div class="ribbon ribbon-top-right"><span>{{item[4]}}</span></div>
+        {% elif item[4] == 'recommended'%}
+        <div class="ribbon ribbon-top-right" ><span style="
+        background-color: rgba(0, 139, 23, 1); ; 
+            border: 3px solid goldenrod;
+            color: gold;">
+            {{item[4]}}</span></div>
+        {% elif item[4] == 'Not Approved'%}
+        <div class="ribbon ribbon-top-right" ><span style="
+        background-color: rgba(139, 0, 0, 1);
+        border: 2px solid rgb(82, 0, 0);">
+            {{item[4]}}</span></div>
+        {% endif %}
+
+        <div class="card-image">
+            <img src={{item[0][0]}} class="card-cover" alt="...">
+        </div>
+        <div class="card-text">
+          <h2>{{item[1]}}</h2>
+          
+        </div>
+        <div class="card-stats">
+            <div class="stat" style="background-color: #bebebe;">
+                <div class="value" style="font-size: 30px; color: green; text-shadow: 0 0 3px green;">{{item[3][0]}}</div>
+                <div class="type">score</div>
+            </div>
+            <div class="stat borders">
+                <div class="value">{{item[3][1]}}<sup style="font-size: 13px;">%</sup></div>
+                <div class="type">parent</div>
+            </div>
+            <div class="stat">
+                <div class="value">{{item[3][3]}}<sup style="font-size: 13px;">%</sup></div>
+                <div class="type">player</div>
+            </div>
+        </div>
+        <div class="card-button">
+            <b><a href="/d_{{item[1]}}">รายละเอียดเพิ่มเติม</a></b>
+        </div>
+    </div>
+    
+    {% endfor %}
+</div>
+
+<div class="t_grey" style="text-align: right;">
+    <b>UP TO TOP</b>
+</div>
+{% endblock %}

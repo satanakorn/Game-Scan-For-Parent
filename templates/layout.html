@@ -1,0 +1,120 @@
+{% set active_page = active_page|default('Homepage') -%}
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <link href="static/style.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="../static/images/logo/justO.png">
+        <title>{% block title %}{% endblock %}</title>
+        <script>
+        </script>
+    </head>
+    <body>
+        
+        <div>
+            <header class="block_margin text-center">
+                <br>
+                <img src="static/images/logo/logo_medium_yellow.png">
+                <br><br>
+                <nav class="navbar navbar-expand-md" style="border-top: 1px solid #00000048;">
+                    <div class="w-100 order-1 order-md-0 ">
+                        <b>
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                    <a class="{{ 'active' if active_page == 'Homepage' else '' }} menu_item"  href="/">หน้าหลัก</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="{{ 'active' if active_page == 'Search' else '' }} menu_item" href="/search">ค้นหาเกม</a>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle menu_item" href=/parentguide role="button" 
+                                        id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                          พ่อแม่ควรรู้
+                                        </a>
+                                        
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            {% for title in articles_title %}
+                                                <li><a class="dropdown-item" href="/a_{{title[0]}}"> {{title[0]}}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                      </div>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle {{ 'active' if active_page == 'Research' else '' }} menu_item" href="#" role="button" 
+                                        id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                          งานวิจัย
+                                        </a>
+                                        
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                          <li><a class="dropdown-item" href="https://ieeexplore.ieee.org/abstract/document/6209036">A serious game for speech disorder children therapy</a></li>
+                                          <li><a class="dropdown-item" href="https://cdnsciencepub.com/doi/abs/10.1139/h07-038">The health benefits of interactive video game exercise</a></li>
+                                          <li><a class="dropdown-item" href="https://www.sciencedirect.com/science/article/pii/S2352154615000613">Action video game training for cognitive enhancement</a></li>
+                                          <li><a class="dropdown-item" href="https://psycnet.apa.org/doiLanding?doi=10.1037%2Fa0034857">The benefits of playing video games.</a></li>
+                                          <li><a class="dropdown-item" href="https://link.springer.com/article/10.3758/APP.72.4.1120">Video game players show more precise multisensory temporal processing abilities</a></li>
+                                          <li><a class="dropdown-item" href="https://journals.lww.com/pedpt/Fulltext/2009/02130/Parental_and_Environmental_Factors_Associated_with.5.aspx?casa_token=pB8tqRgQaFwAAAAA:4JBp4O5iIbSZWSK8gqmTBfC2hIZ73MrCi4R-nT0QLrSmr36xQHWHKt64c6QDCAkg6WfCNTGD_GVZ_L4XoKivgA">Parental and Environmental Factors Associated with Physical Activity Among Children Participating in an Active Video Game</a></li>
+                                          <li><a class="dropdown-item" href="https://journals.sagepub.com/doi/abs/10.1177/1362361313482053?casa_token=k3ULJdi3AkkAAAAA%3A-6HrsI8F_LeqtAaD0cpJuPBb06V0dsVPRC-ZMAck8fGX-Igwy9UPTHBmrt3O-6nadlvl_ywpxts&">Video game access, parental rules, and problem behavior: A study of boys with autism spectrum disorder</a></li>
+                                        </ul>
+                                      </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="{{ 'active' if active_page == 'About' else '' }} menu_item" href="/about">เกี่ยวกับเรา</a>
+                                </li>
+                            </ul>
+                        </b>
+                    </div>
+                       
+
+                    <div>
+                        {% if session.id_type == 'Admin' %}
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle menu_item" href="#" role="button" 
+                                    id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    เพิ่ม
+                                    </a>
+                                    
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="/c_review">เพิ่มรีวิว</a></li>
+                                    <li><a class="dropdown-item" href="/c_article" >เพิ่มบทความ</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        {% endif %}
+                    </div>
+                    <div class="w-25">
+                        {% if session.username %}
+                        <a  class="menu_item" href="/profile">โปรไฟล์</a>
+                        <a  class="menu_item" href="/login">ออกจากระบบ</a>
+                        {% else %}
+            
+                        <a class="menu_item" href="/register">สมัครสมาชิก</a>
+                        <a class="menu_item" href="/logout">เข้าสู่ระบบ</a>
+                        
+                        {% endif %}
+                    </div>
+                </nav>
+            </header>
+        </div>
+        <main class="main-content block_margin">
+            {% block main %}{% endblock %}
+        </main>
+        <footer>
+            <div>
+                <p class="t_center block_margin main-content" style="color: grey">( ©StudyOgames )</p>
+                
+            </div>
+        </footer>
+    </body>
+    
+</html>

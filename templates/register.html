@@ -1,0 +1,162 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block main %}
+
+<script>
+    function month_1() {
+        m = document.getElementById('month').value
+        d = document.getElementById('day')
+
+        console.log(m)
+        let c = JSON.parse('{{ d | tojson }}')
+
+        if (document.getElementById('month').length > 12) {
+            document.getElementById('month').remove(0)
+        }
+
+        if (m == " กุมภาพันธ์") {
+            max = 29
+
+            while (d.length - 1 > 29) {
+                if (d[30] != null) {
+                    d.remove(30)
+                }
+            }
+        } else if (m == " เมษายน" || m == " มิถุนายน" || m == " กันยายน" || m == " พฤศจิกายน") {
+            if (d.length - 1 > 30) {
+                if (d[31] != null) {
+                    d.remove(31)
+                }
+            } else if (d.length - 1 < 30) {
+                o = document.createElement('option')
+                o.value = 30
+                o.innerHTML = 30
+
+                d.add(o)
+            }
+        } else {
+            if (m != "--") {
+                while (d.length - 1 < 31) {
+                    o = document.createElement('option')
+                    o.value = d.length
+                    o.innerHTML = d.length
+                    d.add(o)
+                }
+            }
+        }
+        return false
+    }
+</script>
+
+<div class="text-center container" id="form-wrapper">
+    <form style="max-width: 450px; margin:auto;" action="/register" method="POST">
+
+        <div>
+            <h1 style="margin: 20px">ลงทะเบียนบัญชีผู้ใช้</h1>
+
+            {% if message %}
+                <div class="alert alert-danger mt-3 mb-3" style="width: 400px; margin: auto; height: 50px; border-radius: 5px;" role="alert">
+                    {{ message }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <input class="form-control mx-sm-3" id="username" name="username" placeholder="ชื่อผู้ใช้ (username)"
+                type="text">
+            <!--remember to use class is-invalid for invalid-feedback-->
+            <div class="invalid-feedback">
+                กรุณากรอกชื่อผู้ใช้
+            </div>
+            <br>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control mx-sm-3" id="password" name="password" placeholder="รหัสผ่าน" type="password">
+            <br>
+        </div>
+        <div class="form-group">
+            <input class="form-control mx-sm-3" id="confirm_password" name="confirm_password"
+                placeholder="ยืนยันรหัสผ่าน" type="password">
+            <br>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group mx-sm-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input class="form-control" id="email" name="email" placeholder="อีเมล" type="email"
+                    aria-label="e-mail" aria-describedby="basic-addon1">
+            </div>
+            <br>
+        </div>
+        <div class="form-group">
+            <input class="form-control mx-sm-3" id="full_name" name="full_name" placeholder="ชื่อ-นามสกุล" type="text"
+                oninput="setCustomValidity('')">
+            <br>
+        </div>
+
+        <div>
+
+            <label class="custom-control-label">ประเภทผู้ใช้</label>
+
+            <div class="custom-control custom-radio">
+                <input type="radio" id="parent" name="id_type" class="custom-control-input" value="Parent">
+                <label class="custom-control-label" for="parent">ผู้ปกครอง</label>
+
+                <input type="radio" id="player" name="id_type" class="custom-control-input" value="Player">
+                <label class="custom-control-label" for="player">ผู้เล่นเกม</label>
+            </div>
+
+            <br>
+
+            <p>เลือกวันเกิดของคุณ</p>
+
+            <div class="input-group mb-3" style="margin: auto; max-width: 450px; margin: 40px;">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="day">วัน :</label>
+                </div>
+                <select class="custom-select" id="day">
+                    <option selected>--</option>
+                    {% for item in d %}
+                    <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+                <div style="padding: 5px;"></div>
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="month">เดือน :</label>
+                </div>
+                <select class="custom-select" id="month" onchange="month_1()">
+                    <option selected>--</option>
+                    {% for item in m %}
+                    <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+                <div style="padding: 5px;"></div>
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="year">ปี :</label>
+                </div>
+                <select class="custom-select" id="year">
+                    <option selected>--</option>
+                    {% for item in y %}
+                    <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <!-- Reminder: Accept Term of service and Policy -->
+        </div>
+
+
+        <div style="margin: 20px;">
+            <button class="btn btn-primary smtbtn" type="submit">ลงทะเบียน</button>
+        </div>
+
+    </form>
+
+</div>
+{% endblock %}

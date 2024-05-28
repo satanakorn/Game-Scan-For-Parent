@@ -1,0 +1,219 @@
+{% extends "layout.html" %}
+<script>
+  function setType(type) {
+    //Alternately, you can access the button by its Id
+    document.getElementById("submitId").value = type;
+  }
+</script>
+{% block title %}
+Detail
+{% endblock %}
+{% block main %}
+
+<div class="auto-margin" style="background-image: url(/static/images/pattern1_grey.png);">
+
+  <div class="grid-container">
+    <div class="grid-item"
+      style="width: 250px; text-align: right; background: linear-gradient(0deg, #f0f0f000, #cacacaaf);;">
+      <div style="max-width: 90%; margin: auto;">
+        <br>
+        <div style="border-bottom: 2px solid #8a8a8a50;">
+          <h5> เรตติ้ง </h5>
+          <a href="https://en.wikipedia.org/wiki/PEGI">
+            <img style="width: 100px; height: auto;" src="/static/images/badge/PEGI_{{rate}}.png">
+          </a>
+          <br>
+          <br>
+        </div>
+        <div style="border-bottom: 2px solid #8a8a8a50;">
+          <br>
+          <h5>เปิดให้เล่นบน</h5>
+          {% for item in platforms %}
+          <img style="margin: 2px;" src="/static/images/badge/{{item}}.png">
+          {% endfor %}
+          <br>
+          <br>
+        </div>
+        <div style="border-bottom: 2px solid #8a8a8a50;">
+          <br>
+          <h5>ประเภทของเกม</h5>
+          {% for item in genres %}
+          <b>{{item}},</b>
+          {% endfor %}
+          <br>
+          <br>
+        </div>
+        <br>
+        <h5>ทักษะที่ได้</h5>
+        {% for item in skills %}
+        <img style="margin: 2px;" src="/static/images/badge/{{item}}.png">
+        {% endfor %}
+        <br>
+        <br>
+        <h5>ความรู้ที่ได้</h5>
+        {% for item in subjects %}
+        <img style="margin: 2px;" src="/static/images/badge/{{item}}.png">
+        {% endfor %}
+
+        <br>
+      </div>
+    </div>
+
+    <div class="grid-item2">
+
+      <div>
+        <div>
+          <img style="width: 100%; height: 200px; object-fit: cover; object-position: center; border-radius: 15px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.431);"
+            src="{{pictures[1]}}">
+        </div>
+        <br>
+        
+      </div>
+
+      
+      <div style="text-align: center; display: flex;
+      justify-content: center;
+      align-items:flex-end; border-bottom: 2px solid #8a8a8a50; background: #8a8a8a2f;">
+        {% for item in ribbons %}
+        <img style="padding: 5px;" src="/static/images/badge/{{item}}.png">
+        {% endfor %}
+      </div>
+      <br>
+      <h1 style="text-align: left; font-size: 50px; text-shadow: 0px 0px 50px #8a8a8a;">{{name}}</h1>
+      <br>
+      <h3>รายละเอียด </h3>
+      <p style="font-size: 18px;">
+        {{description}}
+      </p>
+      <br>
+      <br>
+      <br>
+      <h3>รีวิวโดย {{author}}</h3>
+      <p style="font-size: 18px;">
+        {{review}}
+      </p>
+
+
+      <br>
+      <br>
+      <br>
+      <h3>ข้อแนะนำ</h3>
+      <p style="font-size: 18px;">{{suggestion}}
+      <p></p>
+      <br>
+      <br>
+      <br>
+      
+
+    </div>
+
+  </div>
+
+
+  <div class="auto_margin" style="margin-left: 33%;">
+    <div class="score-template">
+      <div class="score-board">
+        <div class="stat score">
+          <div class="value" style="color: green; text-shadow: 0 0 3px green;">{{scores[0]}}</div>
+          <div class="type">studyo score</div>
+        </div>
+        <div class="stat borders score">
+          <div class="value">{{scores[1]}}<sup style="font-size: 13px;">%</sup></div>
+          <div class="type">parent score</div>
+          <div class="type">FROM {{scores[2]}} VOTED</div>
+        </div>
+        <div class="stat score">
+          <div class="value">{{scores[3]}}<sup style="font-size: 13px;">%</sup></div>
+          <div class="type">player score</div>
+          <div class="type">FROM {{scores[4]}} VOTED</div>
+        </div>
+      </div>
+      <form action="/{{url}}" method="POST">
+        <div class="vote-section">
+          {% if session.username %}
+          <button class="stat vote vote-up" id="vote" name="vote" value="vote_up" type="submit"
+            style="height: 50px;">
+            <div style="color: rgb(255, 255, 255);"><b>👍🏻เห็นด้วย</b></div>
+          </button>
+          <button class="stat vote vote-down" id="vote" name="vote" value="vote_down" type="submit"
+            style="height: 50px;">
+            <div style="color: rgb(255, 255, 255);"><b>👎🏻ไม่เห็นด้วย</b></div>
+          </button>
+          {% else %}
+          <a class="stat vote vote-up" id="vote" name="vote"
+            style="height: 50px; background-color: rgb(168, 168, 168);" href="/login">
+            <div style="color: rgb(110, 110, 110); text-decoration: none!important; display: inline-block; padding: 10px;">
+              <b>เห็นด้วย</b></div>
+          </a>
+          <a class="stat vote vote-down" id="vote" name="vote"
+            style="height: 50px; background-color: rgb(168, 168, 168); " href="/login">
+            <div style="color: rgb(110, 110, 110); text-decoration: none!important; display: inline-block; padding: 10px;">
+              <b>ไม่เห็นด้วย</b></div>
+          </a>
+          {% endif %}
+        </div>
+      </form>
+    </div>
+    <br>
+    <br>
+  </div>
+
+<div  style="border-top: 2px solid #8a8a8a50;"></div>
+<div class="grid-gallery container">
+    <div class="gallery">
+      <a target="_blank" href="{{pictures[2]}}">
+        <img src={{pictures[2]}} alt="Cinque Terre">
+      </a>
+    </div>
+
+    <div class="gallery">
+      <a target="_blank" href="{{pictures[3]}}">
+        <img src={{pictures[3]}} alt="Cinque Terre">
+      </a>
+    </div>
+
+    <div class="gallery">
+      <a target="_blank" href="{{pictures[4]}}">
+        <img src={{pictures[4]}} alt="Cinque Terre">
+      </a>
+    </div>
+  
+  
+</div>
+  
+
+
+
+
+  <!--<div id="myCarousel" class="carousel slide" data-bs-ride="carousel" style="margin-left: 9%;">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"
+        aria-current="true"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block" src={{pictures[2]}} alt="First slide">
+      </div>
+
+      <div class="carousel-item">
+        <img class="d-block" src={{pictures[3]}} alt="Second slide">
+      </div>
+
+      <div class="carousel-item">
+        <img class="d-block" src={{pictures[4]}} alt="Third slide">
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+
+
+<!-- TODO user vote-->
+
+</div>
+
+
+{% endblock %}

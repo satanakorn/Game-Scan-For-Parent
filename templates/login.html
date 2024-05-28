@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% set active_page = "login" %}
+{% block title %}
+    Login
+{% endblock %}
+{% block main %}
+    
+    <div  style="text-align: center; padding: 1px; margin: 100px;">
+      
+        <form action="/login" method="post">
+            <div>
+                <h1 style="margin: 20px">ลงชื่อเข้าใช้บัญชีของคุณ</h1>
+                {% if messgae %}
+                <div class="alert alert-danger mt-3" style="width: 400px; margin: auto; height: 50px; border-radius: 5px;" role="alert">
+                    {{ messgae }}
+                </div>
+            {% endif %}
+                <br>
+            </div>
+            <div class="form-group">
+                <div class="group-login">
+                    <input class="form-control" style="width: 400px; margin: auto; height: 50px; border-radius: 5px;" id="username" type="text" name="username" placeholder=" ชื่อผู้ใช้">
+                    <br>
+                </div>
+                <div class="pass">
+                    <input class="form-control" style="width: 400px; margin: auto; height: 50px; border-radius: 5px;" id="password" type="password" name="password" placeholder=" รหัสผ่าน">
+                </div>
+                <div style="margin: 20px;">
+                    <button class="btn-submit btn smtbtn" type="submit">เข้าสู่ระบบ</button>
+                </div>
+            </div>
+        </form>
+        <div style="margin: 50px">
+            <a style="margin:20px; text-decoration: none;" href="forgot_password" class="disabled">ลืมรหัสผ่าน?</a>
+            <a style="margin:20px; text-decoration: none;" href="/register">ยังไม่มีบัญชี</a>
+        </div>
+    </div>
+{% endblock %}

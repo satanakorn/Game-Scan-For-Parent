@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% set active_page = "ResetProfile" %}
+{% block title %}
+    {{ username }}
+{% endblock %}
+{% block main %}
+
+    <div class="text-center">
+        <h1>Edit Profile {{ data.1 }}</h1>
+      
+    </div>
+    <div class="form-group">
+      <form method="POST" action="reset profile">
+        <div class="form-group">
+          <label>ชื่อผู้ใช้:</label>
+          <br>{{data.1}}
+          <br>
+          <br>
+        </div>
+
+        </div>
+
+        <div class="form-group">
+          <label>อีเมล:</label>
+          <input type="email" class="form-control" id="email" name="email" value="{{data.4}}">
+        </div>
+        <div class="form-group">
+          <label>ชื่อ-นามสกุล:</label>
+          <input type="text" class="form-control" id="full_name" name="full_name" value="{{data.5}}">
+        </div>
+        <br>
+
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit">อัพเดท</button>
+        </div>
+      </form>
+    </div>
+    </div>
+{% endblock %}

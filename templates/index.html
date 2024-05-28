@@ -1,0 +1,175 @@
+{% extends "layout.html" %}
+{% set active_page = "Homepage" %}
+{% block title %}
+Homepage
+{% endblock %}
+{% block main %}
+<div>
+  <div style="border-bottom: 2px solid rgba(143, 143, 143, 0.514)">
+  <br>
+  <h1 style="text-align: center;">NEW!!</h1>
+  <h3 style="text-align: center;">รีวิวใหม่ล่าสุด</h3>
+  <br>
+  <div class="grid container" style="grid-gap: 10px;">
+    {% for item in reviews_new%}
+    <div class="card">
+
+      {% if item[4] == 'Approved' %}
+        <div class="ribbon ribbon-top-right"><span>{{item[4]}}</span></div>
+        {% elif item[4] == 'recommended'%}
+        <div class="ribbon ribbon-top-right" ><span style="
+        background-color: rgba(0, 139, 23, 1); ; 
+            border: 3px solid goldenrod;
+            color: gold;">
+            {{item[4]}}</span></div>
+        {% elif item[4] == 'Not Approved'%}
+        <div class="ribbon ribbon-top-right" ><span style="
+        background-color: rgba(139, 0, 0, 1);
+        border: 2px solid rgb(82, 0, 0);">
+            {{item[4]}}</span></div>
+        {% endif %}
+
+        <div class="card-image">
+            <img src={{item[0][0]}} class="card-cover" alt="...">
+        </div>
+        <div class="card-text">
+          <h2>{{item[1]}}</h2>
+          
+        </div>
+        <div class="card-stats">
+          <div class="stat" style="background-color: #bebebe;">
+            <div class="value" style="font-size: 30px; color: green; text-shadow: 0 0 3px green;">{{item[3][0]}}</div>
+                <div class="type">score</div>
+            </div>
+            <div class="stat borders">
+                <div class="value">{{item[3][1]}}<sup style="font-size: 13px;">%</sup></div>
+                <div class="type">parent</div>
+            </div>
+            <div class="stat">
+                <div class="value">{{item[3][3]}}<sup style="font-size: 13px;">%</sup></div>
+                <div class="type">player</div>
+            </div>
+        </div>
+        <div class="card-button">
+            <b><a href="/d_{{item[1]}}">รายละเอียดเพิ่มเติม</a></b>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<br>
+<br>
+</div>
+
+<div style="border-bottom: 2px solid rgba(143, 143, 143, 0.514)">
+  <br>
+  <h1 style="text-align: center;">TRENDING</h1>
+  <h3 style="text-align: center;">กำลังมาแรงในหมู่คนเล่นเกม</h3>
+  <br>
+
+  <div class="grid container" style="grid-gap: 10px;">
+    {% for item in reviews_trend%}
+    <div class="card">
+
+      {% if item[4] == 'Approved' %}
+        <div class="ribbon ribbon-top-right"><span>{{item[4]}}</span></div>
+        {% elif item[4] == 'recommended'%}
+        <div class="ribbon ribbon-top-right" ><span style="
+        background-color: rgba(0, 139, 23, 1); ; 
+            border: 3px solid goldenrod;
+            color: gold;">
+            {{item[4]}}</span></div>
+        {% elif item[4] == 'Not Approved'%}
+        <div class="ribbon ribbon-top-right" ><span style="
+        background-color: rgba(139, 0, 0, 1);
+        border: 2px solid rgb(82, 0, 0);">
+            {{item[4]}}</span></div>
+        {% endif %}
+
+      <div class="card-image">
+          <img src={{item[0][0]}} class="card-cover" alt="...">
+      </div>
+      <div class="card-text">
+        <h2>{{item[1]}}</h2>
+        
+      </div>
+      <div class="card-stats">
+        <div class="stat" style="background-color: #bebebe;">
+          <div class="value" >{{item[3][0]}}</div>
+              <div class="type">score</div>
+          </div>
+          <div class="stat borders">
+              <div class="value">{{item[3][1]}}<sup style="font-size: 13px;">%</sup></div>
+              <div class="type">parent</div>
+          </div>
+          <div class="stat">
+              <div class="value" style="font-size: 30px; color: green; text-shadow: 0 0 3px green;">{{item[3][3]}}<sup style="font-size: 13px;">%</sup></div>
+              <div class="type">player</div>
+          </div>
+      </div>
+      <div class="card-button">
+          <b><a href="/d_{{item[1]}}">รายละเอียดเพิ่มเติม</a></b>
+      </div>
+  </div>
+    {% endfor %}
+  </div>
+  <br>
+  <br>
+</div>
+
+<div style="border-bottom: 2px solid rgba(143, 143, 143, 0.514)">
+  <br>
+  <h1 style="text-align: center;">TOP SCORE!!</h1>
+  <h3 style="text-align: center;">คะแนนรีวิวสูงสุด </h3>
+  <br>
+
+  <div class="grid container" style="grid-gap: 10px;">
+    {% for item in reviews_top%}
+    <div class="card">
+
+      {% if item[4] == 'Approved' %}
+        <div class="ribbon ribbon-top-right"><span>{{item[4]}}</span></div>
+        {% elif item[4] == 'recommended'%}
+        <div class="ribbon ribbon-top-right" ><span style="
+        background-color: rgba(0, 139, 23, 1); ; 
+            border: 3px solid goldenrod;
+            color: gold;">
+            {{item[4]}}</span></div>
+        {% elif item[4] == 'Not Approved'%}
+        <div class="ribbon ribbon-top-right" ><span style="
+        background-color: rgba(139, 0, 0, 1);
+        border: 2px solid rgb(82, 0, 0);">
+            {{item[4]}}</span></div>
+        {% endif %}
+
+        <div class="card-image">
+            <img src={{item[0][0]}} class="card-cover" alt="...">
+        </div>
+        <div class="card-text">
+          <h2>{{item[1]}}</h2>
+          
+        </div>
+        <div class="card-stats">
+          <div class="stat" style="background-color: #bebebe;">
+            <div class="value" style="font-size: 30px; color: green; text-shadow: 0 0 3px green;">{{item[3][0]}}</div>
+                <div class="type">score</div>
+            </div>
+            <div class="stat borders">
+                <div class="value">{{item[3][1]}}<sup style="font-size: 13px;">%</sup></div>
+                <div class="type">parent</div>
+            </div>
+            <div class="stat">
+                <div class="value">{{item[3][3]}}<sup style="font-size: 13px;">%</sup></div>
+                <div class="type">player</div>
+            </div>
+        </div>
+        <div class="card-button">
+            <b><a href="/d_{{item[1]}}">รายละเอียดเพิ่มเติม</a></b>
+        </div>
+    </div>
+    {% endfor %}
+    <br><br>
+</div>
+</div>
+
+
+{% endblock %}

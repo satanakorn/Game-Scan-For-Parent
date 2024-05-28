@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Article
+{% endblock %}
+{% block main %}
+    <div class="auto_margin">
+        <br>
+        <br>
+        <br>
+        <h2 class="text-center"> {{ datas[2] }}</h2>
+        <div class="auto-margin">
+            <p style="white-space:pre-wrap;">&#09; {{ datas[3] | safe}}</p>
+        </div>
+        <div style="text-align: right;">
+            <p style="white-space:pre-wrap;">{{ datas[4]}} &#09;</p>
+        </div>
+        
+    </div>
+{% endblock %}
