@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 import os
 from re import I
 import sqlite3 as sql
@@ -10,9 +9,11 @@ from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
-import uuid #for create token new add by owen พี่เปาเพิ่ม กอลลั่ม ชื่อว่า token ให้หน่อยนะครับ 
+import uuid 
 import re
 from helper import admin_required, login_required
+
+
 
 app = Flask(__name__)
 
